@@ -1,5 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+  /* 1. Memperbaiki teks agar tidak menabrak label Email & Password */
+  .field-container input:focus ~ label,
+  .field-container input:not(:placeholder-shown) ~ label,
+  .field-container input:valid ~ label {
+    top: -10px !important;
+    font-size: 12px !important;
+    color: #b8977e !important; /* Menyesuaikan warna tema cokelat lembutmu */
+  }
+
+  /* Pastikan input text memiliki ruang yang cukup */
+  .field-container input {
+    padding-top: 15px !important;
+  }
+
+  /* 2. Menyesuaikan ukuran blok kartu Login agar pas di semua perangkat */
+  .login-container {
+    width: 100% !important;
+    max-width: 420px !important; /* Membatasi lebar maksimal biar tidak kegedean di laptop */
+    margin: 0 auto !important;
+    padding: 15px !important;
+  }
+
+  .soft-card {
+    padding: 30px 25px !important; /* Membuat jarak dalam kartu lebih pas dan estetik */
+    width: 100% !important;
+  }
+
+  /* Responsif untuk ukuran HP agar tidak kekecilan */
+  @media (max-width: 480px) {
+    .login-container {
+      max-width: 100% !important;
+    }
+    .soft-card {
+      padding: 25px 20px !important;
+    }
+  }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
