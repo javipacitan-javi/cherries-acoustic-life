@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+  /* Menghilangkan tombol panah kiri-kanan */
+  .swiper-buttons, .swiper-button-next, .swiper-button-prev, .icon-arrow-left, .icon-arrow-right {
+    display: none !important;
+  }
+</style>
+  
 <head>
   <title>Cherries acoustic life</title>
   <meta charset="utf-8">
@@ -765,6 +772,18 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="js/script.min.js"></script>
-</body>
+  <script>
+    window.addEventListener('load', function() {
+      if (document.querySelector('.product-swiper').swiper) {
+        const farraSwiper = document.querySelector('.product-swiper').swiper;
+        farraSwiper.params.autoplay = {
+          delay: 4000,
+          disableOnInteraction: false
+        };
+        farraSwiper.autoplay.start();
+      }
+    });
+  </script>
+  </body>
 
 </html>
