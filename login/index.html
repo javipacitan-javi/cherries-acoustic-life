@@ -1,74 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-  /* 1. MEMPERBAIKI TULISAN EMAIL & PASSWORD AGAR KELIHATAN JELAS */
   .field-container {
-    position: relative;
-    margin-bottom: 20px !important;
+    position: relative !important;
+    margin-bottom: 25px !important;
   }
 
-  /* Gaya dasar label saat kosong */
+  /* 1. POSISI AWAL: Teks pas di tengah kotak input saat kosong */
   .field-container label {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9c806b !important; /* Warna cokelat medium agar kontras dan kelihatan */
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 5;
+    position: absolute !important;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #9c806b !important; /* Warna cokelat kalem */
+    font-size: 15px !important;
+    transition: all 0.2s ease-in-out !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    z-index: 5 !important;
   }
 
-  /* Gaya label SAAT DIKLIK atau DIKETIK (Naik ke atas kotak tapi tetap kelihatan) */
+  /* 2. POSISI ANIMASI: Teks otomatis naik ke atas garis & mengecil saat di-klik/diketik */
   .field-container input:focus ~ label,
-  .field-container input:not(:placeholder-shown) ~ label,
-  .field-container input:valid ~ label {
+  .field-container input:not(:placeholder-shown) ~ label {
     top: 0px !important;
     transform: translateY(-50%) !important;
-    left: 15px !important;
     font-size: 12px !important;
-    color: #6e5441 !important; /* Warna cokelat lebih gelap saat di atas biar jelas */
-    background-color: #ffffff !important; /* Memberi background putih mini biar gak tabrakan dengan garis kotak */
-    padding: 0 5px !important;
+    color: #6e5441 !important; /* Warna cokelat lebih gelap saat aktif */
+    background-color: #ffffff !important; /* Memberi lapisan putih agar garis kotak tertutup rapi */
+    padding: 0 6px !important;
   }
 
-  /* Ruang ketik di dalam input */
+  /* Merapikan ukuran kotak input */
   .field-container input {
-    padding: 15px !important;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100% !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
   }
 
-  /* 2. MEMBUAT HALAMAN BISA DI-SCROLL & UKURAN KOTAK PAS */
+  /* Membuat halaman bisa di-scroll dengan rapi */
   body, html {
-    overflow-y: auto !important; /* Mengaktifkan scroll ke bawah */
+    overflow-y: auto !important;
     height: auto !important;
     min-height: 100vh;
     margin: 0;
-    padding: 20px 0 !important; /* Memberi jarak atas bawah saat di-scroll */
+    padding: 40px 0 !important;
   }
 
   .login-container {
     width: 100% !important;
-    max-width: 420px !important; /* Mengunci lebar biar gak kegedean di laptop */
-    margin: 40px auto !important; /* Memberi jarak dari ujung layar atas-bawah */
+    max-width: 420px !important;
+    margin: 0 auto !important;
     padding: 0 15px !important;
   }
 
   .soft-card {
-    padding: 30px 25px !important;
+    padding: 35px 30px !important;
     width: 100% !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
   }
 
-  /* Responsif untuk HP */
   @media (max-width: 480px) {
-    .login-container {
-      margin: 20px auto !important;
-    }
-    .soft-card {
-      padding: 25px 20px !important;
-    }
+    body, html { padding: 20px 0 !important; }
+    .soft-card { padding: 25px 20px !important; }
   }
 </style>
 <head>
@@ -110,7 +105,7 @@
             <form class="comfort-form" id="loginForm" novalidate>
                 <div class="soft-field">
                     <div class="field-container">
-                        <input type="email" id="email" name="email" required autocomplete="email">
+                        <input type="email" id="email" class="form-control" placeholder=" " required>
                         <label for="email">Email address</label>
                         <div class="field-accent"></div>
                     </div>
@@ -119,7 +114,7 @@
 
                 <div class="soft-field">
                     <div class="field-container">
-                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                        <input type="password" id="password" class="form-control" placeholder=" " required>
                         <label for="password">Password</label>
                         <button type="button" class="gentle-toggle" id="passwordToggle" aria-label="Toggle password visibility">
                             <div class="toggle-icon">
