@@ -26,37 +26,37 @@
     border-radius: 24px !important;
   }
 
-  /* 2. LOGIKA UNTUK MENYEMBUNYIKAN LABEL SAAT DIKLIK ATAU DIKETIK */
+  /* 2. MENATA ULANG POSISI AWAL LABEL */
   .form-floating {
     position: relative !important;
     margin-bottom: 20px !important;
   }
 
-  /* Posisi awal label saat kosong */
-  .form-floating > label {
+  /* Target langsung ke class .form-label bawaan templatemu */
+  .form-floating .form-label {
     position: absolute !important;
     top: 50% !important;
     left: 15px !important;
     transform: translateY(-50%) !important;
+    margin: 0 !important;
     padding: 0 !important;
-    color: #9c806b !important; /* Warna cokelat kalem */
+    color: #9c806b !important; /* Warna cokelat lembut */
     transition: opacity 0.2s ease, visibility 0.2s ease !important;
     font-size: 15px !important;
     pointer-events: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    background: transparent !important;
   }
 
-  /* TRIK RAHASIA: Saat input di-klik (focus) ATAU sudah ada isinya (not empty), 
-     paksa tulisan "Email address" dan "Password" HILANG TOTAL */
-  .form-floating > .form-control:focus ~ label,
-  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  /* 3. KUNCI UTAMA: Paksa class .form-label HILANG TOTAL saat diklik atau diketik */
+  .form-floating .form-control:focus ~ .form-label,
+  .form-floating .form-control:not(:placeholder-shown) ~ .form-label {
     opacity: 0 !important;
     visibility: hidden !important;
-    transform: translateY(-50%) scale(0.85) !important; /* Mencegah loncat berantakan */
   }
 
-  /* Merapikan tampilan kotak input */
+  /* Merapikan ukuran kotak input */
   .form-floating > .form-control {
     padding: 18px 15px !important;
     height: auto !important;
