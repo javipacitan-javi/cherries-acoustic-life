@@ -1,56 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-  .field-container {
-    position: relative !important;
-    margin-bottom: 25px !important;
-  }
-
-  /* 1. POSISI AWAL: Teks pas di tengah kotak input saat kosong */
-  .field-container label {
-    position: absolute !important;
-    left: 18px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    color: #9c806b !important; /* Warna cokelat kalem */
-    font-size: 15px !important;
-    transition: all 0.2s ease-in-out !important;
-    pointer-events: none !important;
-    background: transparent !important;
-    z-index: 5 !important;
-  }
-
-  /* 2. POSISI ANIMASI: Teks otomatis naik ke atas garis & mengecil saat di-klik/diketik */
-  .field-container input:focus ~ label,
-  .field-container input:not(:placeholder-shown) ~ label {
-    top: 0px !important;
-    transform: translateY(-50%) !important;
-    font-size: 12px !important;
-    color: #6e5441 !important; /* Warna cokelat lebih gelap saat aktif */
-    background-color: #ffffff !important; /* Memberi lapisan putih agar garis kotak tertutup rapi */
-    padding: 0 6px !important;
-  }
-
-  /* Merapikan ukuran kotak input */
-  .field-container input {
-    width: 100% !important;
-    padding: 16px !important;
-    border-radius: 12px !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Membuat halaman bisa di-scroll dengan rapi */
+  /* 1. MEMBUAT HALAMAN BISA DI-SCROLL DENGAN LEGA */
   body, html {
     overflow-y: auto !important;
     height: auto !important;
     min-height: 100vh;
     margin: 0;
+    background-color: #fcf9f6 !important; /* Warna background pastel bawaanmu */
     padding: 40px 0 !important;
   }
 
   .login-container {
     width: 100% !important;
-    max-width: 420px !important;
+    max-width: 420px !important; /* Mengunci lebar biar gak kegedean di laptop */
     margin: 0 auto !important;
     padding: 0 15px !important;
   }
@@ -58,7 +21,53 @@
   .soft-card {
     padding: 35px 30px !important;
     width: 100% !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+  }
+
+  /* 2. MEMPERBAIKI POSISI TULISAN EMAIL & PASSWORD (STABIL & JELAS) */
+  .field-container {
+    position: relative !important;
+    margin-bottom: 22px !important;
+    text-align: left !important;
+  }
+
+  /* Kita paksa tulisan label berada di atas kotak secara rapi, tidak menumpuk lagi */
+  .field-container label {
+    position: static !important; /* Mengeluarkan label dari dalam kotak */
+    display: block !important;
+    margin-bottom: 8px !important; /* Memberi jarak ke kotaknya */
+    color: #8c6f59 !important; /* Warna cokelat elegan */
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Merapikan ukuran kotak input ketikan */
+  .field-container input {
+    display: block !important;
+    width: 100% !important;
+    padding: 14px 16px !important;
+    font-size: 15px !important;
+    border: 1px solid #e6ded7 !important; /* Garis kotak tipis estetis */
+    border-radius: 12px !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sembunyikan placeholder bawaan agar bersih */
+  .field-container input::placeholder {
+    color: transparent !important;
+  }
+
+  /* Efek sedikit bayangan halus saat kotak diklik */
+  .field-container input:focus {
+    border-color: #b8977e !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(184, 151, 126, 0.15) !important;
   }
 
   @media (max-width: 480px) {
