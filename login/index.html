@@ -147,6 +147,28 @@
 
     <script src="../../shared/js/form-utils.js"></script>
     <script src="js/login.js"></script>
+    <script>
+  // Fungsi ini bertugas menyimpan status masuk dan mengembalikan pengguna ke halaman utama
+  function jalankanProsesLogin() {
+    // 1. Simpan status di browser kalau user berhasil login
+    localStorage.setItem("isLoggedIn", "true");
+
+    // 2. Arahkan kembali ke website utama (Kehidupan Farra)
+    window.location.href = "../index.html";
+  }
+
+  // Pasang fungsi di atas ke form login kamu
+  // Kode ini otomatis mendeteksi saat tombol login di dalam form diklik
+  document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.querySelector("form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", function(e) {
+        e.preventDefault(); // Mencegah reload halaman biasa
+        jalankanProsesLogin();
+      });
+    }
+  });
+</script>
 </body>
 </html>
 
