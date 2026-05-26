@@ -235,7 +235,15 @@
                   <a class="nav-link" href="#">Kata</a>
                 </li>
                 <li class="nav-item">
-                   <a href="login/index.html" id="login-nav-link" class="nav-link">Masuk</a>
+                   <li class="nav-item dropdown" id="login-menu-container">
+                       <a href="login/index.html" id="login-nav-link" class="nav-link">Masuk</a>
+  
+                          <ul class="dropdown-menu" id="profile-dropdown" style="display: none; position: absolute; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); list-style: none; padding: 10px; border-radius: 5px;">
+                            <li><a href="#" style="color: #333; text-decoration: none; display: block; padding: 5px 10px;">Lihat Profil</a></li>
+                            <li><hr style="margin: 5px 0; border: 0; border-top: 1px solid #eee;"></li>
+                            <li><a href="#" id="logout-btn" style="color: red; text-decoration: none; display: block; padding: 5px 10px;">Keluar (Log Out)</a></li>
+                          </ul>
+                      </li>
                 </li>
               </ul>
             </div>
@@ -797,25 +805,60 @@
 
     });
 
-    // --- Kode Tambahan untuk Fitur Login ---
-window.addEventListener('DOMContentLoaded', function() {
-  const loginLink = document.getElementById('login-nav-link');
-  const sudahLogin = localStorage.getItem('isLoggedIn');
+  // --- FITUR LOGIN & LOG OUT LENGKAP ---
+    window.addEventListener('DOMContentLoaded', function() {
+      const loginLink = document.getElementById('login-nav-link');
+      const profileDropdown = document.getElementById('profile-dropdown');
+      const logoutBtn = document.getElementById('logout-btn');
+      const sudahLogin = localStorage.getItem('isLoggedIn');
 
-  if (sudahLogin === 'true') {
-    // 1. Ubah tulisan "Masuk" menjadi "Profil Saya"
-    if (loginLink) {
-      loginLink.textContent = 'Profil Saya';
-      loginLink.href = '#'; // Mengosongkan link agar tidak kembali ke halaman login
-    }
+      // 1. KONDISI JIKA USER SUDAH LOGIN
+      if (sudahLogin === 'true') {
+        if (loginLink) {
+          loginLink.textContent = 'Profil Saya';
+          loginLink.href = '#'; // Matikan link ke halaman login
+          
+          // Bikin tombolnya bisa diklik untuk buka/tutup menu dropdown
+          loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (profileDropdown.style.display === 'none') {
+              profileDropdown.style.display = 'block';
+            } else {
+              profileDropdown.style.display = 'none';
+            }
+          });
+        }
 
-    // 2. Munculkan pop-up konfirmasi (hanya muncul sekali setelah berhasil login)
-    if (!sessionStorage.getItem('popDownload')) {
-      alert('Selamat! Kamu berhasil masuk ke Kehidupan Farra. 🎉');
-      sessionStorage.setItem('popDownload', 'displayed'); 
-    }
-  }
-});
+        // Munculkan pop-up berhasil masuk (hanya sekali)
+        if (!sessionStorage.getItem('popDownload')) {
+          alert('Selamat! Kamu berhasil masuk ke Kehidupan Farra. 🎉');
+          sessionStorage.setItem('popDownload', 'displayed');
+        }
+      }
+
+      // 2. LOGIKA TOMBOL LOG OUT (KELUAR) KETIKA DIKLIK
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hapus status login dari memori browser
+          localStorage.removeItem('isLoggedIn');
+          sessionStorage.removeItem('popDownload'); // Reset pop-up biar besok bisa muncul lagi
+          
+          alert('Kamu telah keluar dari akun. Sampai jumpa lagi! 👋');
+          
+          // Reload halaman agar tombol otomatis berubah balik jadi "Masuk"
+          window.location.reload();
+        });
+      }
+
+      // Tutup dropdown otomatis jika pengguna klik di luar menu
+      document.addEventListener('click', function(e) {
+        if (loginLink && !loginLink.contains(e.target) && profileDropdown && !profileDropdown.contains(e.target)) {
+          profileDropdown.style.display = 'none';
+        }
+      });
+    });
   </script>
 
 </html>
