@@ -7,13 +7,13 @@
     height: auto !important;
     min-height: 100vh;
     margin: 0;
-    background-color: #fcf9f6 !important; /* Warna background pastel bawaanmu */
+    background-color: #fcf9f6 !important;
     padding: 40px 0 !important;
   }
 
   .login-container {
     width: 100% !important;
-    max-width: 420px !important; /* Mengunci lebar biar gak kegedean di laptop */
+    max-width: 420px !important;
     margin: 0 auto !important;
     padding: 0 15px !important;
   }
@@ -26,47 +26,50 @@
     border-radius: 24px !important;
   }
 
-  /* 2. MEMPERBAIKI POSISI TULISAN EMAIL & PASSWORD (STABIL & JELAS) */
-  .field-container {
+  /* 2. LOGIKA UNTUK MENYEMBUNYIKAN LABEL SAAT DIKLIK ATAU DIKETIK */
+  .form-floating {
     position: relative !important;
-    margin-bottom: 22px !important;
-    text-align: left !important;
+    margin-bottom: 20px !important;
   }
 
-  /* Kita paksa tulisan label berada di atas kotak secara rapi, tidak menumpuk lagi */
-  .field-container label {
-    position: static !important; /* Mengeluarkan label dari dalam kotak */
-    display: block !important;
-    margin-bottom: 8px !important; /* Memberi jarak ke kotaknya */
-    color: #8c6f59 !important; /* Warna cokelat elegan */
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  /* Merapikan ukuran kotak input ketikan */
-  .field-container input {
-    display: block !important;
-    width: 100% !important;
-    padding: 14px 16px !important;
+  /* Posisi awal label saat kosong */
+  .form-floating > label {
+    position: absolute !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    padding: 0 !important;
+    color: #9c806b !important; /* Warna cokelat kalem */
+    transition: opacity 0.2s ease, visibility 0.2s ease !important;
     font-size: 15px !important;
-    border: 1px solid #e6ded7 !important; /* Garis kotak tipis estetis */
+    pointer-events: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* TRIK RAHASIA: Saat input di-klik (focus) ATAU sudah ada isinya (not empty), 
+     paksa tulisan "Email address" dan "Password" HILANG TOTAL */
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-50%) scale(0.85) !important; /* Mencegah loncat berantakan */
+  }
+
+  /* Merapikan tampilan kotak input */
+  .form-floating > .form-control {
+    padding: 18px 15px !important;
+    height: auto !important;
+    line-height: normal !important;
+    border: 1px solid #e6ded7 !important;
     border-radius: 12px !important;
-    background-color: #ffffff !important;
+    font-size: 15px !important;
     color: #333333 !important;
-    box-sizing: border-box !important;
   }
 
-  /* Sembunyikan placeholder bawaan agar bersih */
-  .field-container input::placeholder {
-    color: transparent !important;
-  }
-
-  /* Efek sedikit bayangan halus saat kotak diklik */
-  .field-container input:focus {
+  /* Efek fokus cokelat lembut saat kotak diklik */
+  .form-floating > .form-control:focus {
     border-color: #b8977e !important;
-    outline: none !important;
     box-shadow: 0 0 0 3px rgba(184, 151, 126, 0.15) !important;
   }
 
