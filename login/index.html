@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-  /* 1. Memperbaiki teks agar tidak menabrak label Email & Password */
+  /* 1. MEMPERBAIKI TULISAN EMAIL & PASSWORD AGAR KELIHATAN JELAS */
+  .field-container {
+    position: relative;
+    margin-bottom: 20px !important;
+  }
+
+  /* Gaya dasar label saat kosong */
+  .field-container label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9c806b !important; /* Warna cokelat medium agar kontras dan kelihatan */
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Gaya label SAAT DIKLIK atau DIKETIK (Naik ke atas kotak tapi tetap kelihatan) */
   .field-container input:focus ~ label,
   .field-container input:not(:placeholder-shown) ~ label,
   .field-container input:valid ~ label {
-    top: -10px !important;
+    top: 0px !important;
+    transform: translateY(-50%) !important;
+    left: 15px !important;
     font-size: 12px !important;
-    color: #b8977e !important; /* Menyesuaikan warna tema cokelat lembutmu */
+    color: #6e5441 !important; /* Warna cokelat lebih gelap saat di atas biar jelas */
+    background-color: #ffffff !important; /* Memberi background putih mini biar gak tabrakan dengan garis kotak */
+    padding: 0 5px !important;
   }
 
-  /* Pastikan input text memiliki ruang yang cukup */
+  /* Ruang ketik di dalam input */
   .field-container input {
-    padding-top: 15px !important;
+    padding: 15px !important;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* 2. Menyesuaikan ukuran blok kartu Login agar pas di semua perangkat */
+  /* 2. MEMBUAT HALAMAN BISA DI-SCROLL & UKURAN KOTAK PAS */
+  body, html {
+    overflow-y: auto !important; /* Mengaktifkan scroll ke bawah */
+    height: auto !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 0 !important; /* Memberi jarak atas bawah saat di-scroll */
+  }
+
   .login-container {
     width: 100% !important;
-    max-width: 420px !important; /* Membatasi lebar maksimal biar tidak kegedean di laptop */
-    margin: 0 auto !important;
-    padding: 15px !important;
+    max-width: 420px !important; /* Mengunci lebar biar gak kegedean di laptop */
+    margin: 40px auto !important; /* Memberi jarak dari ujung layar atas-bawah */
+    padding: 0 15px !important;
   }
 
   .soft-card {
-    padding: 30px 25px !important; /* Membuat jarak dalam kartu lebih pas dan estetik */
+    padding: 30px 25px !important;
     width: 100% !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   }
 
-  /* Responsif untuk ukuran HP agar tidak kekecilan */
+  /* Responsif untuk HP */
   @media (max-width: 480px) {
     .login-container {
-      max-width: 100% !important;
+      margin: 20px auto !important;
     }
     .soft-card {
       padding: 25px 20px !important;
