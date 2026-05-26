@@ -235,7 +235,7 @@
                   <a class="nav-link" href="#">Kata</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Masuk</a>
+                   <a href="login/index.html" id="login-nav-link" class="nav-link">Masuk</a>
                 </li>
               </ul>
             </div>
@@ -796,6 +796,26 @@
       }
 
     });
+
+    // --- Kode Tambahan untuk Fitur Login ---
+window.addEventListener('DOMContentLoaded', function() {
+  const loginLink = document.getElementById('login-nav-link');
+  const sudahLogin = localStorage.getItem('isLoggedIn');
+
+  if (sudahLogin === 'true') {
+    // 1. Ubah tulisan "Masuk" menjadi "Profil Saya"
+    if (loginLink) {
+      loginLink.textContent = 'Profil Saya';
+      loginLink.href = '#'; // Mengosongkan link agar tidak kembali ke halaman login
+    }
+
+    // 2. Munculkan pop-up konfirmasi (hanya muncul sekali setelah berhasil login)
+    if (!sessionStorage.getItem('popDownload')) {
+      alert('Selamat! Kamu berhasil masuk ke Kehidupan Farra. 🎉');
+      sessionStorage.setItem('popDownload', 'displayed'); 
+    }
+  }
+});
   </script>
 
 </html>
