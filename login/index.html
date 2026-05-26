@@ -26,45 +26,35 @@
     border-radius: 24px !important;
   }
 
-  /* 2. MENATA ULANG POSISI AWAL LABEL */
+  /* 2. MENATA ULANG KOTAK INPUT */
   .form-floating {
     position: relative !important;
     margin-bottom: 20px !important;
   }
 
-  /* Target langsung ke class .form-label bawaan templatemu */
-  .form-floating .form-label {
-    position: absolute !important;
-    top: 50% !important;
-    left: 15px !important;
-    transform: translateY(-50%) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    color: #9c806b !important; /* Warna cokelat lembut */
-    transition: opacity 0.2s ease, visibility 0.2s ease !important;
-    font-size: 15px !important;
-    pointer-events: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    background: transparent !important;
-  }
-
-  /* 3. KUNCI UTAMA: Paksa class .form-label HILANG TOTAL saat diklik atau diketik */
-  .form-floating .form-control:focus ~ .form-label,
-  .form-floating .form-control:not(:placeholder-shown) ~ .form-label {
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  /* Merapikan ukuran kotak input */
   .form-floating > .form-control {
-    padding: 18px 15px !important;
-    height: auto !important;
-    line-height: normal !important;
+    padding: 24px 15px 10px 15px !important; /* Memberi ruang yang pas */
+    height: 60px !important;
     border: 1px solid #e6ded7 !important;
     border-radius: 12px !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
     color: #333333 !important;
+  }
+
+  /* Warna tulisan label pas awal (sebelum diklik) */
+  .form-floating > label {
+    color: #9c806b !important;
+    padding: 18px 15px !important;
+    transition: all 0.2s ease-in-out !important;
+  }
+
+  /* 3. KUNCI UTAMA: BIKIN TULISANNYA HILANG TOTAL SAAT DIKLIK & DIKETIK */
+  /* Kita paksa opacity menjadi 0 dan disembunyikan lewat visibility */
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: scale(0.85) translateY(-15px) !important; /* Menjaga animasi bawaannya tidak merusak layout */
   }
 
   /* Efek fokus cokelat lembut saat kotak diklik */
