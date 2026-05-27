@@ -855,15 +855,25 @@
   <script>
     window.addEventListener('load', function() {
       
-      // 1. Fitur buat "Farra di 2025" (Product Swiper)
-      if (document.querySelector('.product-swiper') && document.querySelector('.product-swiper').swiper) {
+// 1. Fitur buat "Farra di 2025" (Product Swiper)
+    if (document.querySelector('.product-swiper') && document.querySelector('.product-swiper').swiper) {
         const farraSwiper = document.querySelector('.product-swiper').swiper;
+        
+        // Mengaktifkan putaran tanpa henti (mengalir terus, tidak mundur ke awal)
+        farraSwiper.params.loop = true; 
+        
+        // Tambahkan pengaturan speed agar transisinya halus (1000 = 1 detik)
+        farraSwiper.params.speed = 1000; 
+        
         farraSwiper.params.autoplay = {
-          delay: 4000,
-          disableOnInteraction: false
+            delay: 4000, 
+            disableOnInteraction: false 
         };
+        
+        // Memperbarui slider agar efek loop-nya langsung aktif
+        farraSwiper.update();
         farraSwiper.autoplay.start();
-      }
+    }
 
       // 2. Fitur buat "Pameran Artjog 2025" (Main Swiper)
       if (document.querySelector('.main-swiper') && document.querySelector('.main-swiper').swiper) {
