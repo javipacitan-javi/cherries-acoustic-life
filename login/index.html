@@ -218,26 +218,72 @@
 
     <script src="../../shared/js/form-utils.js"></script>
     <script src="js/login.js"></script>
-    <script>
+<script>
   // Fungsi ini bertugas menyimpan status masuk dan mengembalikan pengguna ke halaman utama
   function jalankanProsesLogin() {
-    // 1. Simpan status di browser kalau user berhasil login
-    localStorage.setItem("isLoggedIn", "true");
-
-    // 2. Arahkan kembali ke website utama (Kehidupan Farra)
-    window.location.href = "../index.html";
+      // 1. Simpan status di browser kalau user berhasil login
+      localStorage.setItem("isLoggedIn", "true");
+      
+      // 2. Arahkan kembali ke website utama (Kehidupan Farra)
+      window.location.href = "../index.html";
   }
 
-  // Pasang fungsi di atas ke form login kamu
-  // Kode ini otomatis mendeteksi saat tombol login di dalam form diklik
   document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.querySelector("form");
-    if (loginForm) {
-      loginForm.addEventListener("submit", function(e) {
-        e.preventDefault(); // Mencegah reload halaman biasa
-        jalankanProsesLogin();
-      });
-    }
+      const loginForm = document.querySelector("form");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const passwordToggle = document.getElementById("passwordToggle"); // Pastikan ID ikon mata kamu "passwordToggle"
+
+      // --- SOLUSI 1: FITUR ICON MATA (LIHAT PASSWORD) ---
+      if (passwordToggle && passwordInput) {
+          passwordToggle.addEventListener("click", function() {
+              if (passwordInput.type === "password") {
+                  passwordInput.type = "text";
+                  passwordToggle.style.color = "#b8977e"; // Memberi efek warna saat aktif
+              } else {
+                  passwordInput.type = "password";
+                  passwordToggle.style.color = ""; // Kembalikan warna awal
+              }
+          });
+      }
+
+      // --- SOLUSI 2: TOMBOL GOOGLE & FACEBOOK ---
+      const socialButtons = document.querySelectorAll(".social-soft");
+      if (socialButtons.length >= 2) {
+          // Tombol Google
+          socialButtons[0].addEventListener("click", function() {
+              alert("Fitur login dengan Google saat ini sedang dalam pengembangan! 🚀");
+          });
+          // Tombol Facebook
+          socialButtons[1].addEventListener("click", function() {
+              alert("Fitur login dengan Facebook saat ini sedang dalam pengembangan! 🚀");
+          });
+      }
+
+      // --- SOLUSI 3 & 4: VALIDASI KOSONG & PASSWORD SALAH ---
+      if (loginForm) {
+          loginForm.addEventListener("submit", function(e) {
+              e.preventDefault(); // Mencegah halaman ke-reload otomatis
+
+              const emailValue = emailInput.value.trim();
+              const passwordValue = passwordInput.value;
+
+              // Solusi 4: Alert jika kosong
+              if (emailValue === "" || passwordValue === "") {
+                  alert("Tolong isi alamat email dan password kamu dulu, ya! 📝");
+                  return; // Hentikan proses di sini
+              }
+
+              // Solusi 3: Alert jika password salah (password yang benar: rahasia123)
+              if (passwordValue !== "rahasia123") {
+                  alert("Oops! Password yang kamu masukkan salah. Coba lagi, yuk! 🔑");
+                  return; // Hentikan proses di sini
+              }
+
+              // Jika email dan password sudah terisi, dan passwordnya "rahasia123", jalankan fungsi lama:
+              jalankanProsesLogin();
+          });
+      }
   });
 </script>
 </body>
