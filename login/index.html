@@ -274,13 +274,13 @@
                   return; // Hentikan proses di sini
               }
 
-              // Solusi 3: Alert jika password salah (password yang benar: rahasia123)
-              if (passwordValue !== "rahasia123") {
+              // Solusi 3: Alert jika password salah (password yang benar: 123)
+              if (passwordValue !== "123") {
                   alert("Oops! Password yang kamu masukkan salah. Coba lagi, yuk! 🔑");
                   return; // Hentikan proses di sini
               }
 
-              // Jika email dan password sudah terisi, dan passwordnya "rahasia123", jalankan fungsi lama:
+              // Jika email dan password sudah terisi, dan passwordnya "123", jalankan fungsi lama:
               jalankanProsesLogin();
           });
       }
